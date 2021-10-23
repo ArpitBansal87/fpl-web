@@ -51,7 +51,12 @@ export const Register: React.FC<RegisterProps> = ({ }) => {
         formState: { errors, isSubmitting }
     } = useForm<RegisterProps>();
     const onSubmit: SubmitHandler<RegisterProps> = async (data: any) => {
-        setMutationError({});
+        setMutationError({
+            username: '',
+            confirmPassword: '',
+            password: '',
+            email: '',
+        });
         await registerFunction({ registerInput: data as RegisterInput }).then(response => {
             if (response.error) {
                 const graphQLError = _.head(response?.error?.graphQLErrors);
